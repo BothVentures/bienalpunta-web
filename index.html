@@ -1788,8 +1788,6 @@ footer{ background: var(--void); color: var(--acid); }
           <span class="tema" id="nTema"></span>
           <span class="place"><span id="nLugar"></span> <span id="nEd"></span></span>
         </h1>
-        <p class="pie"><span id="heroPie"></span> · <span class="hint" id="hint"></span></p>
-        <p class="cont" id="heroCont"></p>
       </div>
       <div class="boxB" id="boxB">
         <p class="eyebrow" id="heroEjes"></p>
@@ -3168,11 +3166,8 @@ footer{ background: var(--void); color: var(--acid); }
   $("nEd").textContent    = C.nombre.edicion;
   $("edHome").setAttribute("aria-label", L.ui.home);
   $("heroEyebrow").textContent = C.lockup.en.pie;
-  $("heroPie").textContent = L.ritmo;
-  $("hint").textContent = coarse ? L.ui.hintTactil : L.ui.hint;
   /* la línea de continuidad: sancionada desde el cierre del canon y ausente
      de todas las piezas hasta hoy. Ver `continuidad` en content.js. */
-  $("heroCont").textContent = C.continuidad.en;
   $("heroEjes").textContent = ["Capital", "Rules", "Infrastructure"].join(" · ");
   $("heroBaj").textContent = C.lockup.en.bajada + ".";
   $("heroProm").textContent = L.ui.promesa;
@@ -3976,7 +3971,7 @@ footer{ background: var(--void); color: var(--acid); }
     const nx = (e.clientX - r.left) / r.width, ny = (e.clientY - r.top) / r.height;
     energy = Math.min(1, energy + Math.hypot(nx - target.x, ny - target.y) * 4);
     target.x = nx; target.y = ny; presence = 1; idleSince = performance.now();
-    if (!spent) { spent = true; hintEl.dataset.spent = "1"; }
+    if (!spent) { spent = true; if (hintEl) hintEl.dataset.spent = "1"; }
   }
   sky.addEventListener("pointermove", onMove, { passive: true });
   sky.addEventListener("pointerdown", onMove, { passive: true });
