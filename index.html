@@ -1251,6 +1251,88 @@ footer{ background: var(--void); color: var(--acid); }
 @media (orientation: portrait){
   #tesis{ background-size: auto 140%; background-position: center 97%; }
 }
+
+
+#cierre .apply{ max-width: 38rem; }
+.apply-form{ display: grid; gap: 1.15rem; }
+
+
+.apply-all{ border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 1.15rem; }
+.apply-all > *{ transition: opacity .3s var(--ease-out); }
+.apply-roles{ border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-wrap: nowrap; gap: .4rem; }
+.apply-roles legend{ padding: 0; margin: 0 0 .55rem; font-family: var(--mono); font-weight: 500; font-size: .6rem;
+  letter-spacing: .14em; text-transform: uppercase; opacity: .62; }
+.apply-roles label{ position: relative; display: inline-flex; }
+.apply-roles input{ position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.apply-roles span{ display: inline-block; padding: .5em .95em; border: var(--hair) solid rgba(18,20,15,.32); border-radius: 999px;
+  background: rgba(255,255,255,.55); font-family: var(--mono); font-weight: 500; font-size: .62rem;
+  letter-spacing: .08em; text-transform: uppercase; line-height: 1.2; cursor: pointer;
+  transition: background .2s var(--ease-out), color .2s var(--ease-out), border-color .2s var(--ease-out); }
+.apply-roles label:hover input:not(:checked) + span{ border-color: var(--void); background: #FFFFFF; }
+.apply-roles input:checked + span{ background: var(--void); border-color: var(--void); color: var(--acid); }
+.apply-roles input:focus-visible + span{ outline: 2px solid var(--void); outline-offset: 2px; }
+
+
+.apply-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem 1.6rem; }
+.fld{ position: relative; display: block; min-width: 0; padding-top: .95rem; }
+.fld--wide{ grid-column: 1 / -1; }
+.fld input, .fld textarea{ display: block; width: 100%; margin: 0; padding: .3rem 0 .4rem;
+  font-family: var(--disp); font-weight: 500; font-size: 1rem; line-height: 1.4; color: var(--void);
+  background: transparent; border: 0; border-bottom: var(--hair) solid rgba(18,20,15,.3); border-radius: 0;
+  outline: none; -webkit-appearance: none; appearance: none; transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out); }
+.fld textarea{ resize: vertical; min-height: 4.4rem; }
+.fld input:hover, .fld textarea:hover{ border-bottom-color: rgba(18,20,15,.55); }
+.fld input:focus, .fld textarea:focus{ border-bottom-color: var(--void); box-shadow: 0 1px 0 0 var(--void); }
+.fld-l{ position: absolute; left: 0; top: calc(.95rem + .3rem); font-family: var(--disp); font-weight: 400; font-size: 1rem;
+  line-height: 1.4; color: rgba(18,20,15,.42); pointer-events: none; transform-origin: left top; white-space: nowrap;
+  transition: transform .2s var(--ease-out), color .2s var(--ease-out); }
+.fld-l i{ font-style: normal; opacity: .75; }
+.fld input:focus + .fld-l, .fld input:not(:placeholder-shown) + .fld-l,
+.fld textarea:focus + .fld-l, .fld textarea:not(:placeholder-shown) + .fld-l{ transform: translateY(-1.2rem) scale(.74); color: rgba(18,20,15,.58); }
+
+.fld textarea::placeholder{ color: transparent; transition: color .2s var(--ease-out); }
+.fld textarea:focus::placeholder{ color: rgba(18,20,15,.36); }
+.fld [aria-invalid="true"]{ border-bottom-color: var(--c-red); box-shadow: 0 1px 0 0 var(--c-red); }
+.hp{ position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.apply-opt{ display: inline-flex; gap: .5rem; align-items: center; justify-self: start; font-size: .8rem; font-weight: 500; cursor: pointer; opacity: .82; }
+.apply-opt input{ width: .9rem; height: .9rem; margin: 0; accent-color: var(--void); cursor: pointer; }
+.apply-send{ display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.4rem; margin-top: .2rem; }
+.apply-send .cta{ border-radius: 999px; padding: .66em 1.3em; font-size: .62rem; font-weight: 500; letter-spacing: .14em; }
+.apply-send .cta[disabled]{ opacity: .55; cursor: progress; }
+.apply-note{ margin: 0; font-size: .74rem; font-weight: 500; line-height: 1.5; max-width: 42ch; opacity: .72; }
+.apply-note a, .apply-status a{ color: inherit; text-underline-offset: .18em; }
+.apply-status{ margin: 0; min-height: 1.4em; font-family: var(--mono); font-weight: 500; font-size: .66rem; letter-spacing: .02em; }
+.apply-status:empty{ min-height: 0; }
+.apply-status[data-tone="error"]::before{ content: ""; display: inline-block; width: .55em; height: .55em; margin-right: .5em; border-radius: 50%; background: var(--c-red); vertical-align: .05em; }
+
+@media (max-width: 600px){
+  .apply-grid{ grid-template-columns: minmax(0, 1fr); }
+  .apply-roles{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .apply-roles legend{ grid-column: 1 / -1; }
+  .apply-roles label, .apply-roles span{ width: 100%; text-align: center; }
+  .apply-roles span{ padding-left: .4em; padding-right: .4em; }
+}
+
+
+.apply-form[data-state] .apply-all > :not(.apply-send){ opacity: .5; }
+.apply-form[data-state="sent"] .apply-all > :not(.apply-send){ opacity: .38; }
+.apply-form[data-state] .apply-note{ opacity: .4; }
+.apply-all:disabled .fld input, .apply-all:disabled .fld textarea{ -webkit-text-fill-color: var(--void); color: var(--void); opacity: 1; }
+.apply-all:disabled *{ cursor: default !important; }
+.apply-send .cta:disabled{ cursor: default; }
+.apply-form[data-state="sending"] #applySend, .apply-form[data-state="sending"] #applySend:hover{ opacity: 1; cursor: progress; background: var(--void); color: var(--acid); }
+.apply-form[data-state="sending"] #applySend::after{ content: ""; width: .82em; height: .82em; line-height: normal;
+  border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: apply-spin .7s linear infinite; }
+.apply-form[data-state="sent"] #applySend, .apply-form[data-state="sent"] #applySend:hover{ opacity: 1; background: transparent; color: var(--void); border-color: rgba(18,20,15,.4); }
+.apply-form[data-state="sent"] #applySend::after{ content: "\2713"; font-size: 1em; line-height: 1; }
+@keyframes apply-spin{ to{ transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .apply-form[data-state="sending"] #applySend::after{ animation-duration: 2.4s; } }
+.apply-status[data-tone="ok"]{ font-family: var(--disp); font-size: .86rem; font-weight: 500; line-height: 1.5; }
+.apply-status[data-tone="ok"]::before{ content: "\2713"; margin-right: .45em; }
+.apply-again{ margin-left: .35em; padding: 0; border: 0; background: none; font: inherit; color: inherit;
+  text-decoration: underline; text-underline-offset: .18em; cursor: pointer; opacity: .7; }
+.apply-again:hover{ opacity: 1; }
 </style>
 
 <div class="regmarks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -1293,7 +1375,7 @@ footer{ background: var(--void); color: var(--acid); }
         <p class="eyebrow" id="heroEjes"></p>
         <p class="lead" id="heroBaj"></p>
         <p class="prom" id="heroProm"></p>
-        <a class="cta" href="mailto:info@bienalpunta.com?subject=Application%20%E2%80%94%20Bienal%20Blockchain%20Punta%202027" id="heroCta"></a>
+        <a class="cta" href="#cierre" id="heroCta"></a>
         <p class="coord" id="heroCoord"></p>
       </div>
     </div>
@@ -1380,7 +1462,34 @@ footer{ background: var(--void); color: var(--acid); }
 <section id="cierre" class="close">
   <div class="sheet">
     <h2 id="hCierre"></h2>
-    <a class="cta cta--dark" href="mailto:info@bienalpunta.com?subject=Application%20%E2%80%94%20Bienal%20Blockchain%20Punta%202027" id="closeCta"></a>
+    <div class="apply" id="apply">
+      <form class="apply-form" id="applyForm" novalidate>
+       <fieldset class="apply-all" id="applyAll">
+        <fieldset class="apply-roles">
+          <legend>I am writing as</legend>
+          <label><input type="radio" name="role" value="sponsor"><span>Sponsor</span></label>
+          <label><input type="radio" name="role" value="speaker"><span>Speaker</span></label>
+          <label><input type="radio" name="role" value="press"><span>Press</span></label>
+          <label><input type="radio" name="role" value="partner"><span>Partner</span></label>
+          <label><input type="radio" name="role" value="public"><span>General public</span></label>
+          <label><input type="radio" name="role" value="other"><span>Other</span></label>
+        </fieldset>
+        <div class="apply-grid">
+          <label class="fld"><input name="name" autocomplete="name" maxlength="120" placeholder=" "><span class="fld-l">Name</span></label>
+          <label class="fld"><input name="org" autocomplete="organization" maxlength="160" placeholder=" "><span class="fld-l">Organization <i>· optional</i></span></label>
+          <label class="fld fld--wide"><input type="email" name="email" autocomplete="email" inputmode="email" maxlength="254" placeholder=" "><span class="fld-l">Email</span></label>
+          <label class="fld fld--wide"><textarea name="message" rows="3" maxlength="4000" placeholder="Tell us who you are and what you have in mind."></textarea><span class="fld-l">Message</span></label>
+        </div>
+        <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="apply-opt"><input type="checkbox" name="updates"><span>Send me news about the Bienal</span></label>
+        <div class="apply-send">
+          <button class="cta cta--dark" type="submit" id="applySend">Send</button>
+          <p class="apply-note">We use your details only to reply. You can also write to <a href="mailto:info@bienalpunta.com">info@bienalpunta.com</a>.</p>
+        </div>
+       </fieldset>
+        <p class="apply-status" id="applyStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 </main>
@@ -2333,7 +2442,6 @@ footer{ background: var(--void); color: var(--acid); }
   $("heroBaj").textContent = C.lockup.en.bajada + ".";
   $("heroProm").textContent = L.ui.promesa;
   $("heroCta").textContent = L.cta.label;
-  $("closeCta").textContent = L.cta.label;
   $("heroCoord").textContent = C.coordenada;
   $("barPie").textContent = C.lockup.en.pie;
   $("srPitch").textContent = C.nombre.completo + ". " + C.lockup.en.bajada + ". " + L.posicionamiento;
@@ -3027,6 +3135,96 @@ footer{ background: var(--void); color: var(--acid); }
   run();
   new MutationObserver((ms) => ms.forEach((m) => fix(m.target.nodeType === 1 ? m.target : m.target.parentElement)))
     .observe(document.body, { childList: true, characterData: true, subtree: true });
+})();
+</script>
+<script>
+
+(function () {
+  const API = "https://bienal-web.winter-shadow-facb.workers.dev/contact";
+  const form = document.getElementById("applyForm");
+  if (!form) return;
+  const t0 = Date.now();
+  const status = document.getElementById("applyStatus");
+  const all = document.getElementById("applyAll");
+  let t0r = t0;
+  const send = document.getElementById("applySend");
+  const els = form.elements;
+  const HINT = {
+    sponsor: "Your organization and the kind of presence you have in mind.",
+    speaker: "What you would speak about, and a link to your work.",
+    press:   "Your outlet and what you are covering.",
+    partner: "Your institution and how you would like to take part.",
+    public:  "What you would like to know.",
+    other:   "Tell us who you are and what you have in mind."
+  };
+  form.addEventListener("change", (e) => {
+    if (e.target.name === "role") els.message.placeholder = HINT[e.target.value] || HINT.other;
+    if (e.target.getAttribute("aria-invalid")) e.target.removeAttribute("aria-invalid");
+  });
+  form.addEventListener("input", (e) => { if (e.target.getAttribute("aria-invalid")) e.target.removeAttribute("aria-invalid"); });
+  
+  ["input", "change"].forEach((ev) => form.addEventListener(ev, () => { if (status.dataset.tone === "error") say(""); }));
+
+  const say = (text, tone) => { status.textContent = text; status.dataset.tone = tone || ""; };
+  const fail = (field, text) => {
+    const el = field === "role" ? form.querySelector("input[name=role]") : els[field];
+    if (el) { if (field !== "role") el.setAttribute("aria-invalid", "true"); el.focus(); }
+    say(text, "error");
+  };
+  const val = (n) => (els[n].value || "").trim();
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const role = (form.querySelector("input[name=role]:checked") || {}).value;
+    if (!role) return fail("role", "Choose who you are writing as.");
+    if (val("name").length < 2) return fail("name", "Add your name.");
+    if (!val("email") || !els.email.checkValidity()) return fail("email", "Check the email address.");
+    if (val("message").length < 3) return fail("message", "Write a short message.");
+
+    const q = new URLSearchParams(location.search);
+    const source = { page: location.origin + location.pathname, referrer: document.referrer || "" };
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach((k) => { if (q.get(k)) source[k] = q.get(k); });
+    const body = {
+      role, name: val("name"), org: val("org"), email: val("email"), message: val("message"),
+      updates: els.updates.checked, website: els.website.value, t: Date.now() - t0r,
+      lang: document.documentElement.lang || "en", source
+    };
+
+    
+    form.dataset.state = "sending"; all.disabled = true; form.setAttribute("aria-busy", "true");
+    send.textContent = "Sending"; say("");
+    let sent = false;
+    try {
+      const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const d = await r.json().catch(() => ({}));
+      if (r.ok && d.ok) {
+        
+        sent = true;
+        form.dataset.state = "sent"; send.textContent = "Sent";
+        status.dataset.tone = "ok";
+        status.innerHTML = "Received. We will reply to <b></b> from info@bienalpunta.com. <button type=\"button\" class=\"apply-again\">Write another message</button>";
+        status.querySelector("b").textContent = body.email;
+        status.querySelector(".apply-again").addEventListener("click", () => {
+          form.reset(); delete form.dataset.state; all.disabled = false; send.textContent = "Send";
+          els.message.placeholder = HINT.other; say(""); t0r = Date.now();
+          form.querySelector("input[name=role]").focus();
+        });
+        return;
+      }
+      if (r.status === 400 && d.field) { delete form.dataset.state; all.disabled = false; send.textContent = "Send"; return fail(d.field, d.error); }
+      if (r.status === 429) return say(d.error || "Too many messages in a row. Try again in a minute.", "error");
+      throw new Error(d.error || String(r.status));
+    } catch (err) {
+      const mail = "mailto:info@bienalpunta.com?subject=" + encodeURIComponent("Bienal Punta — " + body.name) +
+        "&body=" + encodeURIComponent(body.message + "\n\n" + body.name + (body.org ? " · " + body.org : ""));
+      status.dataset.tone = "error";
+      status.innerHTML = "It did not go through. Your message is still here — <a></a>.";
+      const a = status.querySelector("a"); a.href = mail; a.textContent = "send it by email instead";
+    } finally {
+      form.removeAttribute("aria-busy");
+      if (!sent) { delete form.dataset.state; all.disabled = false; send.textContent = "Send"; }
+    }
+  });
 })();
 </script>
 </body>
