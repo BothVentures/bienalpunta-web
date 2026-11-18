@@ -1333,6 +1333,7 @@ footer{ background: var(--void); color: var(--acid); }
 .apply-again{ margin-left: .35em; padding: 0; border: 0; background: none; font: inherit; color: inherit;
   text-decoration: underline; text-underline-offset: .18em; cursor: pointer; opacity: .7; }
 .apply-again:hover{ opacity: 1; }
+footer .f-lock{ padding-bottom: clamp(1.4rem, 3.4vw, 2.2rem); }
 </style>
 
 <div class="regmarks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -1550,11 +1551,7 @@ footer{ background: var(--void); color: var(--acid); }
     </div>
   </div>
 
-  <div class="sheet f-fine">
-    <p class="f-ritmo" id="fRitmo"></p>
-    <p class="f-nota" id="fRitmoNota"></p>
-  </div>
-</footer>
+  </footer>
 
 <script>
 
@@ -2646,9 +2643,7 @@ footer{ background: var(--void); color: var(--acid); }
        <span class="st">${L.estados[e.anio]}</span>
      </li>`).join("");
   
-  $("fRitmo").textContent = L.ritmo;
   
-  $("fRitmoNota").textContent = L.ui.edicionesNota;
   
   $("fCredAcc").textContent = L.cta.nota;
   
